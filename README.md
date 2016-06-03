@@ -15,8 +15,8 @@ Skytale-Cipher:
     Decription:
     The Skytale cipher turns the given plaintext to a matrix and converts it to a cipher-word.
     There are 2 different Methods for the Skytale-Cipher.
-    Firstly the Row-Method were you can give the count of rows that shall be used.
-    Secondly the Chars-in-Row-Method (Cols) where you can say how many chars shall be in 1 row.
+    Firstly the Row-Method were you can give the count of rows that shall be used. (Vertical)
+    Secondly the Chars-in-Row-Method (Cols) where you can say how many chars shall be in 1 row. (Horizontal)
 
     Example:
         Key(n): 3
@@ -29,7 +29,7 @@ Skytale-Cipher:
             Row-Cipher: TsithAn!iPTsleIax
         
         Chars-In-Row:
-        n    1. 2. 3.
+        n   1. 2. 3.
             T  h  i
             s  I  s
             A  P  l
