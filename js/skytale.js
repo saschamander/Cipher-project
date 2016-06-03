@@ -30,11 +30,11 @@ function encryptSkytale(text, rows, method) {
  * @returns {string} Returns a ciphered text
  */
 // FIXME
-function encryptSkytaleRows(text, rows) {
+function encryptSkytaleCharsInRow(text, rows) {
     var result = "";
     
     var array = text.split('');
-    var charsInRow = Math.ceil(array.length / rows);
+    var charsInRow = Math.floor(array.length / rows);
     for (var i = 0; i < charsInRow; i++) {
         for (var j = i; true; j += charsInRow) {
             if (array[j] === undefined) {
@@ -55,7 +55,7 @@ function encryptSkytaleRows(text, rows) {
  * @param {int} rows Integer of how many rows/cols shall be used
  * @returns {string} Returns a ciphered text
  */
-function encryptSkytaleCharsInRow(text, rows) {
+function encryptSkytaleRows(text, rows) {
     var result = "";
     var array = text.split('');
 
@@ -70,7 +70,6 @@ function encryptSkytaleCharsInRow(text, rows) {
     }
     return result;
 }
-
 
 /**
  * 
@@ -104,6 +103,33 @@ function decryptSkytale(text, rows, method) {
  * @returns {string} Returns a plain text
  */
 // FIXME
+function decryptSkytaleCharsInRow(text, rows) {
+    var result = "";
+    var decrypted = [];
+    var charsInRow = Math.floor(text.length / rows);
+    //console.log("####################################################");
+    //console.log("Starting Decryption. \nMath.ceil(text.length("+text.length+")/ rows("+rows+")) = "+charsInRow);
+    
+    //Help-variable for addressing to be set char.
+    var index = 0;
+
+    for (var i = 0; i < charsInRow; i++) {
+        for (var j = i; j < text.length; j += charsInRow) {
+            if ((j < text.length || index < text.length)) {
+                decrypted[j] = text[index];
+                //console.log("Writing text[" + index + "]=\'" + text[index] + "\' to decrypted[" + j + "]. Resulting in \'" + decrypted + "\'");
+                index++;
+            } else {
+                break;
+            }
+        }
+    }
+
+    result = decrypted.join("");
+    return result;
+}
+
+/*
 function decryptSkytaleRows(text, rows) {
     var result = "";
     
@@ -145,6 +171,7 @@ function decryptSkytaleRows(text, rows) {
     
     return result;
 }
+*/
 
 /**
  * This function uses the chars in rows skytale method. 
@@ -153,7 +180,7 @@ function decryptSkytaleRows(text, rows) {
  * @param {int} rows Integer of how many rows/cols shall be used
  * @returns {string} Returns a plain text
  */
-function decryptSkytaleCharsInRow(text, rows) {
+function decryptSkytaleRows(text, rows) {
     var result = "";
     var decrypted = [];
 
@@ -175,3 +202,10 @@ function decryptSkytaleCharsInRow(text, rows) {
     return result;
 }
 
+var testsequence = "Hello Bob";
+var testshift = 6;
+var encrypted = encryptSkytaleCharsInRow(testsequence,testshift);
+console.log("\""+testsequence+"\" encrypted with method Chars-in-Row with Shift "+testshift+" is \""+encrypted+"\"");
+
+var decrypted = decryptSkytaleCharsInRow(encrypted,testshift);
+console.log("\""+encrypted+"\" decrypted with method Chars-in-Row with Shift "+testshift+" is \""+decrypted+"\"");
