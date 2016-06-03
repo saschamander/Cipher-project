@@ -54,7 +54,7 @@
                         <a href="https://de.wikipedia.org/wiki/Skytale" target="_blank">Wikipedia: Skytale</a>                                
                     </div>  
                     <div class="btn-group" id="decrypt_method" data-toggle="buttons">
-                        <label class="btn btn-default active">
+                        <label class="btn btn-default">
                             <input type="radio" class="btn-radio" value="0" id="option1">[n]-Rows
                         </label>
                         <label class="btn btn-default active">
