@@ -27,8 +27,16 @@ function encryptCeasar(text, shift) {
  */
 function decryptCeasar(text, shift) {
     var result = "";
-    shift = -(shift);
-    result += encryptCeasar(text, shift);
-    
+    shift = -(shift);    
+    for (var i = 0; i < text.length; i++) {
+        var currentCharAscii = text.charAt(i).charCodeAt(0);
+        var shiftedCharAscii = currentCharAscii + shift;
+
+        if (shiftedCharAscii < asciiOffsetBegin) {
+            shiftedCharAscii = asciiOffsetEnd + (shiftedCharAscii - asciiOffsetBegin);
+        }
+        var shiftedChar = String.fromCharCode(shiftedCharAscii);
+        result += shiftedChar;
+    }
     return result;
 }
